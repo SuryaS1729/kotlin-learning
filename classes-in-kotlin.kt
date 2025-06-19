@@ -5,12 +5,13 @@ import kotlin.reflect.KProperty
 
 
 
-internal open class SmartDevice protected constructor(val name: String, val category: String) {
+ open class SmartDevice protected constructor(val name: String, val category: String) {
 
-   private var deviceStatus = "online"
+    var deviceStatus = "online"
+      protected set
     
      open val deviceType = "unknown"
-            protected set
+            
 
 
     open fun turnOn() {
@@ -63,7 +64,7 @@ class SmartTvDevice(deviceName: String, deviceCategory: String):
         
         }
         
-       protected fun nextChannel(){
+       internal fun nextChannel(){
 					channelNumber++
 						
             println("channel number $channelNumber")
