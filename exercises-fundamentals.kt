@@ -52,3 +52,58 @@ fun ticketPrice(age: Int, isMonday: Boolean): Int {
         return -1
     } 
 }
+
+// 4. Temp Calc
+
+fun main() {
+    // Fill in the code.
+   printFinalTemperature(27.0,"Celsius","Fahrenheit",::cToF)
+    printFinalTemperature(350.0,"Kelvin","Celsius",::kToC)
+     printFinalTemperature(10.0,"Fahrenheit","Kelvin",::fToK)
+}
+
+
+fun printFinalTemperature(
+    initialMeasurement: Double, 
+    initialUnit: String, 
+    finalUnit: String, 
+    conversionFormula: (Double) -> Double
+) {
+    val finalMeasurement = String.format("%.2f", conversionFormula(initialMeasurement)) // two decimal places
+    println("$initialMeasurement degrees $initialUnit is $finalMeasurement degrees $finalUnit.")
+}
+
+fun cToF(temp: Double): Double{
+    val Fresult = ((9.0/5.0)*temp)+32
+    return Fresult
+}
+
+fun kToC(temp: Double): Double{
+    val Cresult = temp - 273.15
+    return Cresult
+}
+
+
+fun fToK(temp: Double): Double{
+    val Kresult = ((5.0/9.0)*(temp-32))+273.15
+    return Kresult
+}
+
+//4.Temp Calc with lambda functions
+
+fun main() {    
+        printFinalTemperature(27.0, "Celsius", "Fahrenheit") { 9.0 / 5.0 * it + 32 }
+        printFinalTemperature(350.0, "Kelvin", "Celsius") { it - 273.15 }
+        printFinalTemperature(10.0, "Fahrenheit", "Kelvin") { 5.0 / 9.0 * (it - 32) + 273.15 }
+}
+
+
+fun printFinalTemperature(
+    initialMeasurement: Double, 
+    initialUnit: String, 
+    finalUnit: String, 
+    conversionFormula: (Double) -> Double
+) {
+    val finalMeasurement = String.format("%.2f", conversionFormula(initialMeasurement)) // two decimal places
+    println("$initialMeasurement degrees $initialUnit is $finalMeasurement degrees $finalUnit.")
+}
